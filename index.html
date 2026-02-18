@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SoulScript Blog Studio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Life · Philosophy · Love · Perspective · Ideas</p>
+        <h1>SoulScript Blog Studio</h1>
+        <p class="subtitle">
+          A reflective blogging platform with powerful admin controls to curate,
+          edit, and publish thoughtful stories.
+        </p>
+      </div>
+      <div id="sessionStatus" class="session-status"></div>
+    </header>
+
+    <main class="layout">
+      <section class="card auth-card">
+        <h2>Account Access</h2>
+        <form id="authForm" class="stack">
+          <label>
+            Full Name
+            <input type="text" id="name" placeholder="Aarav Sharma" required />
+          </label>
+          <label>
+            Email
+            <input type="email" id="email" placeholder="admin@example.com" required />
+          </label>
+          <label>
+            Password
+            <input type="password" id="password" minlength="4" required />
+          </label>
+          <label>
+            Role
+            <select id="role">
+              <option value="writer">Writer</option>
+              <option value="admin">Admin</option>
+            </select>
+          </label>
+          <div class="inline-actions">
+            <button type="submit" data-mode="register">Create Profile</button>
+            <button type="submit" data-mode="login" class="outline">Login</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card hidden" id="editorCard">
+        <h2>Blog Composer</h2>
+        <form id="blogForm" class="stack">
+          <input type="hidden" id="editingId" />
+          <label>
+            Title
+            <input type="text" id="title" required />
+          </label>
+          <label>
+            Theme
+            <select id="theme" required>
+              <option value="Life">Life</option>
+              <option value="Philosophy">Philosophy</option>
+              <option value="Love">Love</option>
+              <option value="Perspective">Perspective</option>
+              <option value="Ideas">Ideas</option>
+            </select>
+          </label>
+          <label>
+            Cover Image URL
+            <input type="url" id="imageUrl" placeholder="https://..." />
+          </label>
+          <label>
+            Content
+            <textarea
+              id="content"
+              rows="8"
+              placeholder="Share your thought, idea, and reflection..."
+              required
+            ></textarea>
+          </label>
+          <div class="inline-actions">
+            <button type="submit">Publish / Update</button>
+            <button type="button" id="resetEditor" class="outline">Reset</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card hidden" id="adminCard">
+        <h2>Admin Management</h2>
+        <div class="stack">
+          <p>
+            Admin can edit any blog, feature important posts, and manage visibility.
+          </p>
+          <label>
+            Filter by Theme
+            <select id="adminFilter">
+              <option value="all">All</option>
+              <option value="Life">Life</option>
+              <option value="Philosophy">Philosophy</option>
+              <option value="Love">Love</option>
+              <option value="Perspective">Perspective</option>
+              <option value="Ideas">Ideas</option>
+            </select>
+          </label>
+        </div>
+      </section>
+    </main>
+
+    <section class="feed">
+      <div class="feed-header">
+        <h2>Published Blogs</h2>
+        <button id="logoutBtn" class="outline hidden">Logout</button>
+      </div>
+      <div id="blogList" class="blog-grid"></div>
+    </section>
+
+    <template id="blogTemplate">
+      <article class="blog-card">
+        <img class="blog-cover" alt="Blog cover" />
+        <div class="blog-body">
+          <span class="tag"></span>
+          <h3 class="blog-title"></h3>
+          <p class="meta"></p>
+          <p class="blog-content"></p>
+          <div class="blog-actions"></div>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
